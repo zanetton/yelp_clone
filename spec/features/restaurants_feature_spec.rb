@@ -59,7 +59,7 @@ end
     end
   end
 
-  context 'delteting restaurants' do 
+  context 'deleting restaurants' do 
 
     before {Restaurant.create name: 'KFC'}
 
