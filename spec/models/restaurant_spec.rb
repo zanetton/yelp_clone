@@ -7,6 +7,13 @@ describe Restaurant, type: :model do
     restaurant = Restaurant.create(name: 'KFC')
     review = restaurant.reviews.create(thoughts:'good', rating: '5')
     restaurant.destroy
-    expect{Review.find(review.id)}.to raise_error "Couldn't find Review with 'id'=#{review.id}"
+    # expect{Review.find(review.id)}.to raise_error "Couldn't find Review with 'id'=#{review.id}"
+    expect(Review.where(id: review.id)).not_to exist
+  end
+
+  it 'is not valid with a name of less than three characters' do
+    restaurant = Restaurant.new(name: "KF")
+    expect(restaurant).to have(1).error_on(:name)
+    expect(restaurant).not_to be_valid
   end
 end
