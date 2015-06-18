@@ -45,4 +45,15 @@ feature 'reviewing' do
     click_link 'Delete Review'
     expect(page).to have_content 'You can only delete your own reviews'
 end
+  scenario 'displays an average rating for all reviews' do
+    create_restaurant('KFC')
+    click_link 'Review KFC'
+    leave_review('So so', '3')
+    click_link 'Sign out'
+    user_sign_up('test2@example.com')
+    click_link 'Review KFC'
+    leave_review('Great', '5')
+    click_link 'Sign out'
+    expect(page).to have_content('Average rating: 4')
+  end
 end
