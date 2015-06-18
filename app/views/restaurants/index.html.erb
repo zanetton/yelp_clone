@@ -15,6 +15,7 @@
 <% end %>
     <%= link_to restaurant.name, restaurant_path(restaurant) %>
     <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
+    <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
     <% if current_user %>
       <% if current_user.id == restaurant.user_id %>
         <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>

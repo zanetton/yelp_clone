@@ -54,6 +54,6 @@ end
     click_link 'Review KFC'
     leave_review('Great', '5')
     click_link 'Sign out'
-    expect(page).to have_content('Average rating: 4')
+    expect(page).to have_content('Average rating: ★★★★☆')
   end
 end
