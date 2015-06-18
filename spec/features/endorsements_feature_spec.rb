@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'endorsing reviews' do
   before do
     user_sign_up('test@example.com')
-    create_restaurant('kfc')
-    click_link 'Review kfc'
+    create_restaurant('KFC')
+    click_link 'Review KFC'
     leave_review('It was an abomination', '3')
   end
 
