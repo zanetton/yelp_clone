@@ -16,12 +16,7 @@ feature "User can sign in and out" do
 
   context "user signed in on the homepage" do
     before do
-      visit('/')
-      click_link('Sign up')
-      fill_in('Email', with: 'test@example.com')
-      fill_in('Password', with: 'testtest')
-      fill_in('Password confirmation', with: 'testtest')
-      click_button('Sign up')
+      user_sign_up('test@example.com')
     end
 
 
@@ -37,30 +32,16 @@ feature "User can sign in and out" do
     end
 
     it 'Should not be able to edit a restaurant it did not create'do
-      visit '/restaurants'
-      click_link 'Add a restaurant'
-      fill_in 'Name', with:'KFC'
-      click_button 'Create Restaurant'
+      create_restaurant('KFC')
       click_link('Sign out')
-      click_link('Sign up')
-      fill_in('Email', with: 'test2@example.com')
-      fill_in('Password', with: 'test2test2')
-      fill_in('Password confirmation', with: 'test2test2')
-      click_button('Sign up')
+      user_sign_up('test2@example.com')
       expect(page).not_to have_link 'Edit KFC'
     end
 
     it 'Should not be able to delete a restaurant it did not create'do
-      visit '/restaurants'
-      click_link 'Add a restaurant'
-      fill_in 'Name', with:'KFC'
-      click_button 'Create Restaurant'
+      create_restaurant('KFC')
       click_link('Sign out')
-      click_link('Sign up')
-      fill_in('Email', with: 'test2@example.com')
-      fill_in('Password', with: 'test2test2')
-      fill_in('Password confirmation', with: 'test2test2')
-      click_button('Sign up')
+      user_sign_up('test2@example.com')
       expect(page).not_to have_link 'Delete KFC'
     end
   end
