@@ -93,6 +93,7 @@ end
       click_link 'Add a restaurant'
       fill_in 'Name', with:'KFC'
       click_button 'Create Restaurant'
+
     end
 
     scenario 'removes a restaurant when a user clicks a delete link' do

@@ -49,6 +49,20 @@ feature "User can sign in and out" do
       click_button('Sign up')
       expect(page).not_to have_link 'Edit KFC'
     end
+
+    it 'Should not be able to delete a restaurant it did not create'do
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with:'KFC'
+      click_button 'Create Restaurant'
+      click_link('Sign out')
+      click_link('Sign up')
+      fill_in('Email', with: 'test2@example.com')
+      fill_in('Password', with: 'test2test2')
+      fill_in('Password confirmation', with: 'test2test2')
+      click_button('Sign up')
+      expect(page).not_to have_link 'Delete KFC'
+    end
   end
 
 
